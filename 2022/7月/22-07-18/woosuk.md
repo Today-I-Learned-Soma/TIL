@@ -53,9 +53,19 @@ print(run.elapsedTime)	// 2.016505002975464
     -   나중에 mutable property가 바뀌어도 lazy property는 바뀌지 않음 → 싱크가 안맞음
 	➡️ lazy property가 의존하는 다른 property 또한 변경 불가능해야 함 (immutable → `let` 으로 할당)
 
-**질문. 무거운 연산으로 caching해 놓고는 싶은데, 가끔 한 번씩 재계산할 일이 있으면 어떻게 할까? 외부 컨텍스트에서 갖고 있거나, 캐시 프라퍼티를 따로 만들거나, 의존성 변수에 setter를 등록하는 방법이 있기는 할 텐데, 이만큼 succint한 방법은 없을지.**
+> **질문. 무거운 연산으로 caching해 놓고는 싶은데, 가끔 한 번씩 재계산할 일이 있으면 어떻게 할까? 외부 컨텍스트에서 갖고 있거나, 캐시 프라퍼티를 따로 만들거나, 의존성 변수에 setter를 등록하는 방법이 있기는 할 텐데, 이만큼 succint한 방법은 없을지.**
+
+### 클로저에서의 [weak self]
+간단히 정리하면, **`self`를 사용하는 클로저를 만든 뒤 그것을 계속 가지고 있으면, 순환참조를 유발한다.**
+
+`self`를 참조하는 클로저를 계속 가지고 있는 상황:
+- (다른 객체에 래핑하거나 해서) `self`의 property에 저장
+- `Timer` 등, 스스로 deallocate 하지 않는 객체에 콜백으로 제공
 
 ## Reference
 
 [How to check whether a value is inside a range](https://www.hackingwithswift.com/articles/90/how-to-check-whether-a-value-is-inside-a-range)
+
 [Using Lazy Initialization, how do we reset the var?](https://developer.apple.com/forums/thread/15735)
+
+[You don’t (always) need [weak self]](https://velog.io/@haanwave/Article-You-dont-always-need-weak-self)
