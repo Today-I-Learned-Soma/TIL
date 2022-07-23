@@ -47,20 +47,20 @@
 - 단계
     - Environment
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/875cbd4e-6a2b-4d2f-8e73-9a6385c95f23/Untitled.png)
-    
+    ![1](https://user-images.githubusercontent.com/79312551/180591605-705ba1ce-0c9d-4489-b799-65c3c810b172.png)
+
     - Parameter
         - 파이프라인 실행 시 파라미터 받음
     - Triggers
         - 어떤 형태로 트리거 되는가?
         - 이 파이프라인이 어떤 주기로 실행이 되는가?
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b28dbbee-dada-47f1-becd-fcc64b3973b8/Untitled.png)
-        
+        ![2](https://user-images.githubusercontent.com/79312551/180591608-c4db6af8-f65c-4e28-8ec8-f677d8f8529f.png)
+
     - When
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6f0425d5-b4df-4c96-bb3a-138e7522324f/Untitled.png)
-    
+    ![3](https://user-images.githubusercontent.com/79312551/180591612-4a3a4235-4806-4f0a-bb81-823ad653b3ed.png)
+
 
 # 오늘 느낀점
 
