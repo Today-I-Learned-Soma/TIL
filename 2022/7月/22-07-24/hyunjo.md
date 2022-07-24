@@ -74,14 +74,6 @@ describe("App", () => {
 });
 ```
 
-## 비고
-
-### getBy vs queryBy vs findBy
-
-- getBy: default
-- queryBy: 해당 엘리먼트가 없을거라고 가정할 때
-- findBy: 해당 엘리먼트가 "결국에" 있을거라고 가정할 때 (비동기적인 경우)
-
 4. 이벤트 발생시키기
 
 ```jsx
@@ -157,3 +149,11 @@ describe('App', () => {
   });
 });
 ```
+
+## 비고
+
+### getBy vs queryBy vs findBy
+
+- getBy: default
+- queryBy: 해당 엘리먼트가 없을거라고 가정할 때
+- findBy: 해당 엘리먼트가 "결국에" 있을거라고 가정할 때 (비동기적인 경우)
