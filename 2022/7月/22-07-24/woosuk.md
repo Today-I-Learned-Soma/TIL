@@ -20,9 +20,9 @@ addOne(square(2)) 	// 5
 
 ### 첫번째 시도: 래퍼 객체로 감싸서, 로그 쌓는 기능 추가
 
-아래와 같이 number을 감싸는 래퍼 객체로 로그 기능을 추가한다. 이 경우, transform 함수였던 `square`, `addOne` 이 `number`이 아닌 래퍼 객체인 `NumberWithLogs` 를 다루게 되면서 로그를 추가할 수 있다.
+아래와 같이 number을 감싸는 **래퍼 객체**로 로그 기능을 추가한다. 이 경우, transform 함수였던 `square`, `addOne` 이 `number`이 아닌 래퍼 객체인 `NumberWithLogs` 를 다루게 되면서 로그를 추가할 수 있다.
 
-➡️ ❌ **단점: `concat`으로 로그를 쌓는 로직이 중복됨!**
+> ➡️ ❌ **단점: `concat`으로 로그를 쌓는 로직이 중복됨!**
 
 ```typescript
 interface NumberWithLogs {		// number을 로그와 함께 감싸는 래퍼 객체
@@ -59,7 +59,10 @@ square(addOne(wrapWithLogs(2)) 	// 9
 ```
 
 만약에, 아래와 같이 써 본다면? 
-➡️ 함수가 만드는 `newNumberWithLogs` 객체의 구조가 단순해진다 (`logs`가 element 1개짜리 list면 됨). 이후 concat 하는 부분을 분리해보자.
+
+➡️ **함수가 만드는 `newNumberWithLogs` 객체의 구조가 단순해진다** (`logs`가 element 1개짜리 list면 됨). 
+
+이후 concat 하는 부분을 분리해보자.
 
 ```typescript
 function addOne(x: NumberWithLogs): NumberWithLogs {
@@ -107,21 +110,21 @@ const c = runWithLogs(b, square)
 
 ### Monad의 개념과 구성요소
 
-이와 같이, monad가 전,후처리를 담당해서 chaining operation이 가능하도록 만들어주는 것이 디자인 패턴으로서의 monad이다.
+이와 같이, **runner function이 전,후처리를 담당해서 chaining operation이 가능하도록 만들어주는 것**이 디자인 패턴으로서의 monad이다.
 
 Monad는 다음 세가지의 요소로 이루어진다.
 
-1. Wrapper Type: `NumberWithLogs`에 해당. 
-2. Wrap Function: `wrapWithLogs()`에 해당. monad ecosystem에 엔트리포인트를 만들어줌. `return`, `pure`, `unit`이라고도 함
-3. Run Function: `runWithLogs()`에 해당. monadic values에 transformation을 실행함. `bind`, `flatMap`, `>>=` 이라고도 함
+> 1. Wrapper Type: `NumberWithLogs`에 해당. 
+> 2. Wrap Function: `wrapWithLogs()`에 해당. monad ecosystem에 엔트리포인트를 만들어줌. `return`, `pure`, `unit`이라고도 함
+> 3. Run Function: `runWithLogs()`에 해당. monadic values에 transformation을 실행함. `bind`, `flatMap`, `>>=` 이라고도 함
 
 Monad를 사용할 때의 데이터 흐름은 아래 그림과 같다.
 
 ![monad data flow](./woosuk.png)  
 
-1. Wrap Function을 통해 데이터를 "monad land"로 들인다.
-2. Run Function에서 monad를 unwrapping하고, 이 때 'Behind the scenes' 작업을 한다.
-3. Unwrapped 객체에 사용자가 정의한 transform을 적용한다.
+> 1. Wrap Function을 통해 데이터를 "monad land"로 들인다.
+> 2. Run Function에서 monad를 unwrapping하고, 이 때 'Behind the scenes' 작업을 한다.
+> 3. Unwrapped 객체에 사용자가 정의한 transform을 적용한다.
 
 이렇게 한다면, 주요 로직을 감싸고 있는 주변 작업들이 '없는 것처럼' 작업할 수 있다.
 
