@@ -8,11 +8,11 @@
 
 ```typescript
 function square(x: number): number {
-	return x * x
+    return x * x
 }
 
 function addOne(x: number): number {
-	return x + 1
+    return x + 1
 }
 
 addOne(square(2)) 	// 5
@@ -26,51 +26,51 @@ addOne(square(2)) 	// 5
 
 ```typescript
 interface NumberWithLogs {		// number을 로그와 함께 감싸는 래퍼 객체
-	result: number
-	logs: string[]
+    result: number
+    logs: string[]
 }
 
 function wrapWithLogs(x: number): NumberWithLogs {
-	return {
-		result: x,
-		logs: []
-	}
+    return {
+        result: x,
+        logs: []
+    }
 }
 
 function square(x: NumberWithLogs): NumberWithLogs {
-	return {
-		result: x.result * x.result,
-		logs: x.logs.concat([
-			`Squared ${x.result} to get ${x.result * x.result}`
-		])
-	}
+    return {
+        result: x.result * x.result,
+        logs: x.logs.concat([
+            `Squared ${x.result} to get ${x.result * x.result}`
+        ])
+    }
 }
 
 function addOne(x: NumberWithLogs): NumberWithLogs {
-	return {
-		result: x.result + 1,
-		logs: x.logs.concat([
-			`Added 1 to ${x.result} to get ${x.result + 1}`
-		])
-	}
+    return {
+        result: x.result + 1,
+        logs: x.logs.concat([
+            `Added 1 to ${x.result} to get ${x.result + 1}`
+        ])
+    }
 }
 
 square(addOne(wrapWithLogs(2)) 	// 9
 ```
 
 만약에, 아래와 같이 써 본다면? 
-➡️ 함수가 만드는 `newNumberWithLogs` 객체의 구조가 단순해진다 (`logs`가 eleme`nt 1개짜리 list면 됨). 이후 concat 하는 부분을 분리해보자.
+➡️ 함수가 만드는 `newNumberWithLogs` 객체의 구조가 단순해진다 (`logs`가 element 1개짜리 list면 됨). 이후 concat 하는 부분을 분리해보자.
 
 ```typescript
 function addOne(x: NumberWithLogs): NumberWithLogs {
-	const newNumberWithLogs = {
-		result: x.result * x.result,
-		logs: [`Squared ${x.result} to get ${x.result * x.result}`]
-	}
-	return {
-		result: newNumberWithLogs.result,
-		logs: x.logs.concat(newNumberWithLogs.logs)
-	}
+    const newNumberWithLogs = {
+        result: x.result * x.result,
+        logs: [`Squared ${x.result} to get ${x.result * x.result}`]
+    }
+    return {
+        result: newNumberWithLogs.result,
+        logs: x.logs.concat(newNumberWithLogs.logs)
+    }
 }
 ```
 
@@ -80,21 +80,21 @@ function addOne(x: NumberWithLogs): NumberWithLogs {
 
 ```typescript
 function runWithLogs(
-	input: NumberWithLogs,
-	transform: (_: number) => NumberWithLogs
+    input: NumberWithLogs,
+    transform: (_: number) => NumberWithLogs
 ): NumberWithLogs {
-	const newNumberWithLogs = transform(input.result)
-	return {
-		result: newNumberWithLogs.result,
-		logs: input.logs.concat(newNumberWithLogs.logs)
-	}
+    const newNumberWithLogs = transform(input.result)
+    return {
+        result: newNumberWithLogs.result,
+        logs: input.logs.concat(newNumberWithLogs.logs)
+    }
 }
 
 function square(x: number): NumberWithLogs {
-	return {
-		result: x * x,
-		logs: [`Squared ${x} to get ${x * x}`]
-	}
+    return {
+        result: x * x,
+        logs: [`Squared ${x} to get ${x * x}`]
+    }
 }
 
 /* addOne 구현도 동일 */
@@ -134,14 +134,14 @@ function some<T>(x: T): Option<T>
 
 // Run Function
 function run<T>(
-	input: Option<T>,
-	transform: (_:T) => Option<T>
+    input: Option<T>,
+    transform: (_:T) => Option<T>
 ): Option<T> {
-	if (input == none) {
-		return none
-	}
+    if (input == none) {
+        return none
+    }
 
-	return transform(input.value)
+    return transform(input.value)
 }
 ```
 
