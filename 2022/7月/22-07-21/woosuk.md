@@ -11,17 +11,20 @@
 </p>
 
 이런 경우,  `detached HEAD` 가 된 커밋을 포함하는 브랜치를 만들어 줄 수 있다.
-```bash
+```shell
+
 $ git branch <new-branch-name> <detached-commit-hash>
 ```
 
 혹은, 아직 해당 커밋을 떠나지 않았을 경우 현재 커밋을 감싸는 브랜치를 만들 수 있다.
-```bash
+```shell
+
 $ git switch -c <new-branch-name>
 ```
 하지만 나는 이렇게 브랜치를 따로 만들어서 머지해줌으로써 실수를 기록으로 남기고 싶지 않았고, 어차피 원래 브랜치도 리모트(github)에서는 삭제했었기 때문에, 해당 커밋만을 `main` 브랜치로 가지고 오기 위해 `git cherry-pick`을 사용했다.
 
-```bash
+```shell
+
 // 현재 브랜치로 가져오고 싶은 커밋 해시들 나열
 $ git cherry-pick <commit to pick> <commit to pick 2>
 
