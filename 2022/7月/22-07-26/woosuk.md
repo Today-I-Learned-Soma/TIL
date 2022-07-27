@@ -46,3 +46,5 @@ $ git tag
 # References
 
 [[김종권의 iOS 앱 개발 알아가기] [git] tag (Release) 사용 방법 (terminal, source tree, remote 3가지 방법)](https://ios-development.tistory.com/356)
+
+[[Pro Git] Tag 사용하기](https://mobicon.tistory.com/146)
