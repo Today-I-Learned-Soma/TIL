@@ -43,7 +43,7 @@ def get_model(model_path="/content/train/exp13/weights/best.pt"):
 	DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 	model = AutoShape(
-		DetectMultiBackend(weights=MODEL_PATH,
+		DetectMultiBackend(weights=model_path,
 						   device=torch.device(DEVICE))
 	)
 
@@ -69,10 +69,10 @@ def file_upload():
 
 전송받은 jpg 포맷의 이미지를 `PIL.Image` 객체로 읽은 후, YOLOv5 모델에 입력해 결과를 얻는다.
 ```python
-	im_bytes = im_file.read()
-	im = Image.open(io.BytesIO(im_bytes))
+im_bytes = im_file.read()
+im = Image.open(io.BytesIO(im_bytes))
 
-	results = model(im, size=640)
+results = model(im, size=640)
 ```
 
 전체 서버 코드는 아래와 같다.
@@ -114,4 +114,4 @@ if __name__ == '__main__':
 
 [[Velog] [오늘의 배움] 045 flask.request](https://velog.io/@sangmin7648/%EC%98%A4%EB%8A%98%EC%9D%98-%EB%B0%B0%EC%9B%80-045)
 
-[YOLOv5 repository > models/common.py](https://github.com/ultralytics/yolov5/blob/master/models/common.py)
+[[Github] YOLOv5 > models/common.py](https://github.com/ultralytics/yolov5/blob/master/models/common.py)
